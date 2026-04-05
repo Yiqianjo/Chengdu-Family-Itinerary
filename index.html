@@ -133,7 +133,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 14px 60px 14px 20px;
+    padding: 14px 20px;
     overflow-x: auto;
     white-space: nowrap;
     gap: 2px;
@@ -494,30 +494,42 @@
   }
 
   /* Language toggle */
-  .lang-toggle {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 200;
-    background: var(--red);
-    color: white;
-    border: none;
-    font-family: 'Inter', 'Noto Sans SC', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    padding: 16px 16px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    line-height: 1;
-    border-radius: 0;
-    box-shadow: none;
+  .lang-toggle-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
   }
 
-  .lang-toggle:hover { background: #a93226; }
-  .lang-toggle:active { background: #922b21; }
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    background: var(--warm-gray);
+    border: none;
+    border-radius: 20px;
+    padding: 3px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    gap: 0;
+  }
+
+  .lang-toggle .lang-opt {
+    padding: 6px 18px;
+    border-radius: 17px;
+    font-family: 'Inter', 'Noto Sans SC', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--ink-muted);
+    transition: all 0.25s ease;
+    line-height: 1;
+  }
+
+  .lang-toggle .lang-opt.active {
+    background: var(--ink);
+    color: white;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
 
   .lang-zh[hidden], .lang-en[hidden] { display: none; }
 
@@ -537,8 +549,6 @@
 </head>
 <body>
 
-<button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
-
 <!-- Chinese Version -->
 <div class="lang-zh" id="langZh">
 
@@ -556,15 +566,23 @@
       <div class="hero-dot-num">4</div>
       <div class="hero-dot-label">目的地</div>
     </div>
+    <div class="hero-dot">
+      <div class="hero-dot-num">6</div>
+      <div class="hero-dot-label">人</div>
+    </div>
+  </div>
+  <div class="lang-toggle-wrap">
+    <div class="lang-toggle" id="langToggle" onclick="toggleLang()">
+      <span class="lang-opt active">中文</span>
+      <span class="lang-opt">EN</span>
+    </div>
   </div>
 </div>
 
 <!-- Route Strip - Interactive -->
 <div class="route-strip" id="routeStrip">
   <div class="route-nav">
-    <button class="route-stop active" data-target="day1" data-label="4/19 移动日">长沙</button>
-    <span class="route-arrow">→</span>
-    <button class="route-stop" data-target="day1" data-label="4/19 移动日">成都</button>
+    <button class="route-stop active" data-target="day1" data-label="4/19 移动日">成都</button>
     <span class="route-arrow">→</span>
     <button class="route-stop" data-target="day2" data-label="4/20 全天游览">九寨沟</button>
     <span class="route-arrow">→</span>
@@ -573,8 +591,6 @@
     <button class="route-stop" data-target="day5" data-label="4/23 熊猫&水利">都江堰</button>
     <span class="route-arrow">→</span>
     <button class="route-stop" data-target="day6" data-label="4/24 收尾">青城山</button>
-    <span class="route-arrow">→</span>
-    <button class="route-stop" data-target="day6" data-label="4/24 飞抵香港">✈ 香港</button>
   </div>
   <div class="route-tooltip" id="routeTooltip"></div>
 </div>
@@ -1083,7 +1099,7 @@
 
   // Update active stop on scroll
   const days = ['day1','day2','day3','day4','day5','day6'];
-  const stopTargets = ['day1','day1','day2','day3','day5','day6','day6'];
+  const stopTargets = ['day1','day2','day3','day5','day6'];
   const strip = document.getElementById('routeStrip');
 
   window.addEventListener('scroll', function() {
@@ -1124,15 +1140,23 @@
       <div class="hero-dot-num">4</div>
       <div class="hero-dot-label">DESTINATIONS</div>
     </div>
+    <div class="hero-dot">
+      <div class="hero-dot-num">6</div>
+      <div class="hero-dot-label">TRAVELERS</div>
+    </div>
+  </div>
+  <div class="lang-toggle-wrap">
+    <div class="lang-toggle" id="langToggleEn" onclick="toggleLang()">
+      <span class="lang-opt">中文</span>
+      <span class="lang-opt active">EN</span>
+    </div>
   </div>
 </div>
 
 <!-- Route Strip -->
 <div class="route-strip" id="en-routeStrip">
   <div class="route-nav">
-    <button class="route-stop active" data-target="en-day1" data-label="4/19 Travel Day">Changsha</button>
-    <span class="route-arrow">→</span>
-    <button class="route-stop" data-target="en-day1" data-label="4/19 Travel Day">Chengdu</button>
+    <button class="route-stop active" data-target="en-day1" data-label="4/19 Travel Day">Chengdu</button>
     <span class="route-arrow">→</span>
     <button class="route-stop" data-target="en-day2" data-label="4/20 Full Day Tour">Jiuzhaigou</button>
     <span class="route-arrow">→</span>
@@ -1141,8 +1165,6 @@
     <button class="route-stop" data-target="en-day5" data-label="4/23 Panda &amp; Dam">Dujiangyan</button>
     <span class="route-arrow">→</span>
     <button class="route-stop" data-target="en-day6" data-label="4/24 Final Day">Qingcheng</button>
-    <span class="route-arrow">→</span>
-    <button class="route-stop" data-target="en-day6" data-label="4/24 Fly to HK">✈ Hong Kong</button>
   </div>
   <div class="route-tooltip" id="en-routeTooltip"></div>
 </div>
@@ -1618,7 +1640,7 @@
   }
 
   var days = ['en-day1','en-day2','en-day3','en-day4','en-day5','en-day6'];
-  var stopTargets = ['en-day1','en-day1','en-day2','en-day3','en-day5','en-day6','en-day6'];
+  var stopTargets = ['en-day1','en-day2','en-day3','en-day5','en-day6'];
 
   window.addEventListener('scroll', function() {
     var stripH = strip.offsetHeight;
@@ -1645,18 +1667,15 @@
 function toggleLang() {
   var zh = document.getElementById('langZh');
   var en = document.getElementById('langEn');
-  var btn = document.getElementById('langToggle');
 
   if (en.hidden) {
     zh.hidden = true;
     en.hidden = false;
-    btn.textContent = '中文';
     document.documentElement.lang = 'en';
     document.title = 'Sichuan Itinerary · 4/19–4/24';
   } else {
     zh.hidden = false;
     en.hidden = true;
-    btn.textContent = 'EN';
     document.documentElement.lang = 'zh';
     document.title = '川渝行程 · 4/19–4/24';
   }
