@@ -133,7 +133,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 14px 20px;
+    padding: 14px 60px 14px 20px;
     overflow-x: auto;
     white-space: nowrap;
     gap: 2px;
@@ -354,16 +354,16 @@
 
   .item {
     display: grid;
-    grid-template-columns: 48px 20px 1fr;
+    grid-template-columns: 44px 16px 1fr;
     gap: 0;
     position: relative;
-    padding: 0 0 14px;
+    min-height: 32px;
   }
 
   .item:not(:last-child)::before {
     content: '';
     position: absolute;
-    left: 57px;
+    left: 51px;
     top: 22px;
     bottom: 0;
     width: 1px;
@@ -376,19 +376,9 @@
     letter-spacing: 0.5px;
     padding-top: 5px;
     text-align: right;
-    padding-right: 8px;
+    padding-right: 0;
     line-height: 1.4;
-  }
-
-  .item-dot-wrap {
-    display: flex;
-    justify-content: center;
-    padding-top: 7px;
-  }
-
-  .item-content {
-    padding: 2px 0 0 8px;
-    border-left: none;
+    grid-column: 1;
   }
 
   .item-dot {
@@ -397,7 +387,14 @@
     border-radius: 50%;
     border: 1px solid var(--warm-gray);
     background: var(--paper);
-    flex-shrink: 0;
+    grid-column: 2;
+    margin: 7px auto 0;
+  }
+
+  .item-content {
+    padding: 2px 0 14px 8px;
+    border-left: none;
+    grid-column: 3;
   }
 
   .item-dot.filled { background: var(--ink); border-color: var(--ink); }
@@ -498,6 +495,18 @@
     .hero h1 { font-size: 32px; }
   }
 
+  /* Trip intro */
+  .trip-intro {
+    text-align: center;
+    padding: 32px 20px 8px;
+    max-width: 680px;
+    margin: 0 auto;
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 2;
+    letter-spacing: 0.5px;
+  }
+
   /* Language toggle */
   .lang-toggle-wrap {
     display: flex;
@@ -560,7 +569,7 @@
 <!-- Hero -->
 <div class="hero">
   <div class="hero-tag">旅行行程</div>
-  <h1>九寨沟 · 成都<br>都江堰 · 青城山</h1>
+  <h1>九寨沟 · 毕棚沟<br>都江堰 · 成都</h1>
   <p class="hero-sub">2026年4月19日 — 4月24日 · 6天5夜</p>
   <div class="hero-dots">
     <div class="hero-dot">
@@ -577,7 +586,7 @@
     </div>
   </div>
   <div class="lang-toggle-wrap">
-    <div class="lang-toggle" id="langToggle" onclick="toggleLang()">
+    <div class="lang-toggle" onclick="toggleLang()">
       <span class="lang-opt active">中文</span>
       <span class="lang-opt">EN</span>
     </div>
@@ -587,21 +596,23 @@
 <!-- Route Strip - Interactive -->
 <div class="route-strip" id="routeStrip">
   <div class="route-nav">
-    <button class="route-stop active" data-target="day1" data-label="4/19 移动日">成都</button>
+    <button class="route-stop active" data-target="day1" data-label="D1–D2 九寨沟">九寨沟</button>
     <span class="route-arrow">→</span>
-    <button class="route-stop" data-target="day2" data-label="4/20 全天游览">九寨沟</button>
+    <button class="route-stop" data-target="day3" data-label="D3 羌寨温泉">理县</button>
     <span class="route-arrow">→</span>
-    <button class="route-stop" data-target="day3" data-label="4/21 恢复日">成都</button>
+    <button class="route-stop" data-target="day5" data-label="D5 熊猫·都江堰">都江堰</button>
     <span class="route-arrow">→</span>
-    <button class="route-stop" data-target="day5" data-label="4/23 熊猫&水利">都江堰</button>
-    <span class="route-arrow">→</span>
-    <button class="route-stop" data-target="day6" data-label="4/24 收尾">青城山</button>
+    <button class="route-stop" data-target="day6" data-label="D6 自由行">成都</button>
   </div>
   <div class="route-tooltip" id="routeTooltip"></div>
 </div>
 
 <!-- Days -->
 <div class="container">
+
+  <p class="trip-intro">
+    川西经典环线——先直奔九寨沟看水，再一路南下，穿羌寨、泡温泉、望雪山，到都江堰看两千年水利，顺路摸摸熊猫，最后回成都逛吃收尾。整条线从高原慢慢回到平原，越走越舒服。自然、人文、美食都有，节奏不赶。
+  </p>
 
   <!-- Day 1 -->
   <div class="day" id="day1">
@@ -610,7 +621,7 @@
         1<small>DAY</small>
       </div>
       <div class="day-title-block">
-        <div class="day-title">长沙 → 成都 → 九寨沟</div>
+        <div class="day-title">成都 → 九寨沟</div>
         <div class="day-date">4月19日（周日）· 移动日</div>
       </div>
     </div>
@@ -619,61 +630,45 @@
 
     <div class="items">
       <div class="item">
-        <div class="item-time">10:55</div>
-        <div class="item-dot-wrap"><div class="item-dot red"></div></div>
-        <div class="item-content">
-          <div class="item-label">✈️ 川航 3U8766 出发</div>
-          <div class="item-desc">长沙黄花机场 → 成都双流机场</div>
-        </div>
-      </div>
-      <div class="item">
         <div class="item-time">13:00</div>
-        <div class="item-dot-wrap"><div class="item-dot filled"></div></div>
+        <div class="item-dot red"></div>
         <div class="item-content">
-          <div class="item-label">落地成都双流</div>
-          <div class="item-desc">取行李，前往成都东站（约40分钟）</div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="item-time">~15:00</div>
-        <div class="item-dot-wrap"><div class="item-dot teal"></div></div>
-        <div class="item-content">
-          <div class="item-label">📍 成都东站 · 全员汇合</div>
-          <div class="item-desc">全员在成都东站集合，购票/取票，候车 (2点40分左右到达东站)</div>
+          <div class="item-label">✈️ 5人落地成都双流机场</div>
+          <div class="item-desc">7座别克商务车接机 → 前往成都东站</div>
         </div>
       </div>
       <div class="item">
         <div class="item-time">15:45</div>
-        <div class="item-dot-wrap"><div class="item-dot teal"></div></div>
+        <div class="item-dot teal"></div>
         <div class="item-content">
-          <div class="item-label">🚄 动车 → 黄龙九寨站</div>
-          <div class="item-desc">3:45或4:02发车 · 约1小时39分</div>
+          <div class="item-label">🚄 C5796 成都东 → 黄龙九寨</div>
+          <div class="item-desc">五人在成都东站集合（2:40左右到达东站，需寄存行李、取票）· 15:45发车 · 17:30到达 · 历时1小时45分</div>
         </div>
       </div>
       <div class="item">
-        <div class="item-time">17:25</div>
-        <div class="item-dot-wrap"><div class="item-dot"></div></div>
+        <div class="item-time">17:30</div>
+        <div class="item-dot"></div>
         <div class="item-content">
-          <div class="item-label">🚗 专车 → 九寨沟</div>
-          <div class="item-desc">约3小时 · 约20:30抵达沟口</div>
+          <div class="item-label">🚗 接站 → 九寨沟口</div>
+          <div class="item-desc">9座江铃特顺保姆车（JMC van）· 在车站与王嘉汇合 · 车程约2小时</div>
         </div>
       </div>
       <div class="item">
-        <div class="item-time">~20:30</div>
-        <div class="item-dot-wrap"><div class="item-dot red"></div></div>
+        <div class="item-time">晚上</div>
+        <div class="item-dot filled"></div>
         <div class="item-content">
-          <div class="item-label">🏨 Check in · 早睡</div>
-          <div class="item-desc">不洗澡，不剧烈运动，多喝水</div>
+          <div class="item-label">🏨 九寨沟仰望星空·Vacilando度假庄园</div>
+          <div class="item-desc">日照金山观赏点店 · 早睡 · 多喝水</div>
         </div>
       </div>
     </div>
 
     <div class="alert alert-warn">
-      <strong>⚠ 高原反应预警</strong> — 从平原直达海拔2000m+，到达当晚充分休息，如感头痛、恶心请告知同伴，严重时需下山就医。
+      <strong>⚠ 高原提示</strong> — 黄龙九寨站海拔2977m，九寨沟口约2000m，属中等海拔区域，非极端高原。从坐上高铁开始多补水，到达当晚充分休息，如感头痛、恶心请告知同伴。
     </div>
   </div>
 
-  <div class="section-divider"><span>第二天</span></div>
+  <div class="section-divider"></div>
 
   <!-- Day 2 -->
   <div class="day" id="day2">
@@ -682,17 +677,17 @@
         2<small>DAY</small>
       </div>
       <div class="day-title-block">
-        <div class="day-title">九寨沟景区 · 全天</div>
-        <div class="day-date">4月20日（周一）· 世界自然遗产</div>
+        <div class="day-title">九寨沟 · 全天</div>
+        <div class="day-date">4月20日（周一）· 世界自然遗产 · 海拔2000–3060m · 中等海拔</div>
       </div>
     </div>
 
-    <img class="day-image" src="https://unsplash.com/photos/zB3yb0cj7DU/download?w=800&fit=crop&h=360" alt="九寨沟彩林碧水" loading="lazy">
+    <img class="day-image" src="https://p0.ifengimg.com/a/2016_23/26a6943582a1b61_size156_w1024_h768.jpg" alt="九寨沟彩林碧水" loading="lazy">
 
     <div class="items">
       <div class="item">
         <div class="item-time">07:30</div>
-        <div class="item-dot-wrap"><div class="item-dot red"></div></div>
+        <div class="item-dot red"></div>
         <div class="item-content">
           <div class="item-label">🎫 景区开门 · 尽早入园</div>
           <div class="item-desc">14:00 停止接待新游客，务必早到</div>
@@ -700,28 +695,24 @@
       </div>
       <div class="item">
         <div class="item-time">全天</div>
-        <div class="item-dot-wrap"><div class="item-dot teal"></div></div>
+        <div class="item-dot teal"></div>
         <div class="item-content">
-          <div class="item-label">🚗 VIP专车游览各湖群</div>
-          <div class="item-desc">五花海 → 珍珠滩瀑布 → 诺日朗瀑布 → 五彩池</div>
+          <div class="item-label">🚗 VIP专车游览</div>
+          <div class="item-desc">九寨沟风景区 · 五花海 · 诺日朗瀑布 · 长海 · 配备导游</div>
         </div>
       </div>
       <div class="item">
         <div class="item-time">傍晚</div>
-        <div class="item-dot-wrap"><div class="item-dot filled"></div></div>
+        <div class="item-dot filled"></div>
         <div class="item-content">
-          <div class="item-label">🚗 专车返回九寨沟镇</div>
-          <div class="item-desc">晚餐 + 早睡，为明天回程做准备</div>
+          <div class="item-label">🏨 返回酒店</div>
+          <div class="item-desc">九寨沟仰望星空·Vacilando度假庄园 · 车程约10分钟 · 晚餐 + 早睡</div>
         </div>
       </div>
     </div>
-
-    <div class="alert alert-gold">
-      <strong>💡 提前预约</strong> — 九寨沟实行严格限流，门票须通过官方小程序提前预约购买。旺季极易售罄，<strong>请立即预约</strong>！
-    </div>
   </div>
 
-  <div class="section-divider"><span>第三天</span></div>
+  <div class="section-divider"></div>
 
   <!-- Day 3 -->
   <div class="day" id="day3">
@@ -730,50 +721,54 @@
         3<small>DAY</small>
       </div>
       <div class="day-title-block">
-        <div class="day-title">九寨沟 → 成都 · 恢复日</div>
-        <div class="day-date">4月21日（周二）· 下山休整</div>
+        <div class="day-title">九寨沟 → 茂县 → 理县</div>
+        <div class="day-date">4月21日（周二）· 沿途风光</div>
       </div>
     </div>
 
-    <img class="day-image" src="https://5b0988e595225.cdn.sohucs.com/images/20190925/fa4d6cb0fe4a48aca925689cc75e84d0.jpeg" alt="成都街巷美食" loading="lazy">
+    <img class="day-image" src="https://p9.itc.cn/images01/20210319/01c735f4cbf2469e8efb44b7534c7c71.png" alt="羌寨风光" loading="lazy">
 
     <div class="items">
       <div class="item">
         <div class="item-time">上午</div>
-        <div class="item-dot-wrap"><div class="item-dot red"></div></div>
+        <div class="item-dot red"></div>
         <div class="item-content">
-          <div class="item-label">🚗 专车 → 黄龙九寨站</div>
-          <div class="item-desc">约3小时，建议早出发</div>
+          <div class="item-label">🚗 出发 · 九寨沟 → 茂县</div>
+          <div class="item-desc">9座江铃特顺保姆车 · 沿途游览</div>
         </div>
       </div>
       <div class="item">
-        <div class="item-time">中午</div>
-        <div class="item-dot-wrap"><div class="item-dot teal"></div></div>
+        <div class="item-time">途中</div>
+        <div class="item-dot teal"></div>
         <div class="item-content">
-          <div class="item-label">🚄 动车回成都东站</div>
-          <div class="item-desc">约1小时39分，沿途风景秀丽</div>
+          <div class="item-label">🏞️ 叠溪海子</div>
+          <div class="item-desc">高原堰塞湖 · 海拔约2600m · 距九寨沟约2小时</div>
         </div>
       </div>
       <div class="item">
         <div class="item-time">下午</div>
-        <div class="item-dot-wrap"><div class="item-dot"></div></div>
+        <div class="item-dot teal"></div>
         <div class="item-content">
-          <div class="item-label">🏨 Check in 成都酒店</div>
-          <div class="item-desc">茶馆喝茶 · 轻松逛</div>
+          <div class="item-label">🏘️ 桃坪羌寨</div>
+          <div class="item-desc">千年羌族古寨 · 碉楼建筑 · 距叠溪海子约1.5小时</div>
         </div>
       </div>
       <div class="item">
-        <div class="item-time">晚餐</div>
-        <div class="item-dot-wrap"><div class="item-dot filled"></div></div>
+        <div class="item-time">晚上</div>
+        <div class="item-dot filled"></div>
         <div class="item-content">
-          <div class="item-label">🍜 在有特色的街区觅食</div>
-          <div class="item-desc">钵钵鸡、担担面、冒菜，成都小吃初体验</div>
+          <div class="item-label">🏨 卓邸康钦私汤温泉</div>
+          <div class="item-desc">理县古尔沟店 · 海拔约2400m · 距桃坪羌寨约1小时</div>
         </div>
       </div>
     </div>
+
+    <div class="alert alert-info">
+      <strong>♨️ 温泉提示</strong> — 古尔沟海拔约2400m，属中等海拔，泡温泉记得带泳衣。高海拔泡温泉注意：每次不超过20分钟，避免空腹或饱食后入浴，多补水，起身时动作放慢防头晕。
+    </div>
   </div>
 
-  <div class="section-divider"><span>第四天</span></div>
+  <div class="section-divider"></div>
 
   <!-- Day 4 -->
   <div class="day" id="day4">
@@ -782,50 +777,54 @@
         4<small>DAY</small>
       </div>
       <div class="day-title-block">
-        <div class="day-title">成都 · 文化漫游</div>
-        <div class="day-date">4月22日（周三）· 休整 + 历史 + 美食</div>
+        <div class="day-title">理县 → 都江堰</div>
+        <div class="day-date">4月22日（周三）· 毕棚沟 · 海拔2000–3600m · ⚠ 本程最高</div>
       </div>
     </div>
 
-    <img class="day-image" src="https://upload.wikimedia.org/wikipedia/commons/2/20/%E6%88%90%E9%83%BD%E6%AD%A6%E4%BE%AF%E7%A5%A0_%E7%BA%A2%E5%A2%99%E7%AB%B9%E5%BD%B1.jpg" alt="成都武侯祠红墙竹影" loading="lazy">
+    <img class="day-image" src="https://img.redocn.com/sheying/20251121/bipenggoubingchuanxiagaoyuanhaizi_13715879.jpg.400.jpg" alt="毕棚沟" loading="lazy">
 
     <div class="items">
       <div class="item">
         <div class="item-time">上午</div>
-        <div class="item-dot-wrap"><div class="item-dot red"></div></div>
+        <div class="item-dot red"></div>
         <div class="item-content">
-          <div class="item-label">🏯 武侯祠 或 🌿 杜甫草堂</div>
-          <div class="item-desc">二选一 · 步行友好 · 历史文化底蕴深厚</div>
+          <div class="item-label">🏔️ 毕棚沟景区</div>
+          <div class="item-desc">上海子 → 磐羊湖（电瓶车往返）→ 月亮湾 → 燕子岩 · 距古尔沟约30分钟</div>
         </div>
       </div>
       <div class="item">
         <div class="item-time">下午</div>
-        <div class="item-dot-wrap"><div class="item-dot teal"></div></div>
+        <div class="item-dot teal"></div>
         <div class="item-content">
-          <div class="item-label">🍵 茶馆 · 慢生活</div>
-          <div class="item-desc">感受成都特有的悠闲</div>
+          <div class="item-label">🚗 前往都江堰</div>
+          <div class="item-desc">理县 → 都江堰 · 车程约3小时</div>
         </div>
       </div>
       <div class="item">
-        <div class="item-time">下午</div>
-        <div class="item-dot-wrap"><div class="item-dot"></div></div>
+        <div class="item-time">傍晚</div>
+        <div class="item-dot"></div>
         <div class="item-content">
-          <div class="item-label">🛍️ 春熙路 / IFS</div>
-          <div class="item-desc">购物 · 买成都特产 · 伴手礼</div>
+          <div class="item-label">🌉 都江堰南桥夜景</div>
+          <div class="item-desc">廊桥灯影 · 古韵夜色</div>
         </div>
       </div>
       <div class="item">
-        <div class="item-time">晚餐</div>
-        <div class="item-dot-wrap"><div class="item-dot filled"></div></div>
+        <div class="item-time">晚上</div>
+        <div class="item-dot filled"></div>
         <div class="item-content">
-          <div class="item-label">🍢 成都火锅</div>
-          <div class="item-desc">鸳鸯锅 · 照顾不能吃太辣的家人</div>
+          <div class="item-label">🏨 望山旺空中庭院设计师民宿</div>
+          <div class="item-desc">都江堰景区南桥店</div>
         </div>
       </div>
     </div>
+
+    <div class="alert alert-warn">
+      <strong>⚠ 高原提示</strong> — 毕棚沟核心景区海拔约3600m，是本次行程最高点，不要剧烈运动，放缓脚步。山路弯道多，容易晕车，建议备晕车药、少看手机。
+    </div>
   </div>
 
-  <div class="section-divider"><span>第五天</span></div>
+  <div class="section-divider"></div>
 
   <!-- Day 5 -->
   <div class="day" id="day5">
@@ -834,8 +833,8 @@
         5<small>DAY</small>
       </div>
       <div class="day-title-block">
-        <div class="day-title">熊猫谷 · 都江堰 · 青城山</div>
-        <div class="day-date">4月23日（周四）· ⚠ 行程较满</div>
+        <div class="day-title">都江堰 → 成都</div>
+        <div class="day-date">4月23日（周四）· 熊猫 + 水利</div>
       </div>
     </div>
 
@@ -843,53 +842,41 @@
 
     <div class="items">
       <div class="item">
-        <div class="item-time">早上</div>
-        <div class="item-dot-wrap"><div class="item-dot filled"></div></div>
-        <div class="item-content">
-          <div class="item-label">🚗 专车 · 成都 → 都江堰</div>
-          <div class="item-desc">两天包车（D5–D6）· 酒店接人 · 约1小时</div>
-        </div>
-      </div>
-      <div class="item">
         <div class="item-time">上午</div>
-        <div class="item-dot-wrap"><div class="item-dot red"></div></div>
+        <div class="item-dot red"></div>
         <div class="item-content">
-          <div class="item-label">🐼 都江堰熊猫谷</div>
-          <div class="item-desc">约2小时 · 电瓶车代步</div>
+          <div class="item-label">🐼 熊猫谷</div>
+          <div class="item-desc">约2小时 · 距民宿约20分钟</div>
         </div>
       </div>
       <div class="item">
         <div class="item-time">下午</div>
-        <div class="item-dot-wrap"><div class="item-dot teal"></div></div>
+        <div class="item-dot teal"></div>
         <div class="item-content">
-          <div class="item-label">🌊 都江堰水利工程</div>
-          <div class="item-desc">2000年历史 · UNESCO世界遗产 · 步道平坦</div>
+          <div class="item-label">🌊 都江堰景区</div>
+          <div class="item-desc">2000年历史 · UNESCO世界遗产 · 配备中英文讲解员 · 距熊猫谷约15分钟</div>
         </div>
       </div>
       <div class="item">
         <div class="item-time">傍晚</div>
-        <div class="item-dot-wrap"><div class="item-dot"></div></div>
+        <div class="item-dot"></div>
         <div class="item-content">
-          <div class="item-label">🌉 南桥夜景</div>
-          <div class="item-desc">步行5分钟 · 灯光璀璨</div>
+          <div class="item-label">🚗 前往成都</div>
+          <div class="item-desc">都江堰 → 高铁站取行李 → 成都市区 · 车程约1.5小时</div>
         </div>
       </div>
       <div class="item">
         <div class="item-time">晚上</div>
-        <div class="item-dot-wrap"><div class="item-dot filled"></div></div>
+        <div class="item-dot filled"></div>
         <div class="item-content">
-          <div class="item-label">🚗 专车 → 青城山（约20分钟）</div>
-          <div class="item-desc">🏨 住：青城山脚民宿，环境清幽</div>
+          <div class="item-label">🏨 成都春熙路福朋喜来登酒店</div>
+          <div class="item-desc">市中心</div>
         </div>
       </div>
     </div>
-
-    <div class="alert alert-warn">
-      <strong>⚠ 体力提示</strong> — 如妈妈体力不足，熊猫谷和都江堰<strong>二选一</strong>，不要硬撑。青城山是明天重点，今天保存体力更重要。
-    </div>
   </div>
 
-  <div class="section-divider"><span>第六天</span></div>
+  <div class="section-divider"></div>
 
   <!-- Day 6 -->
   <div class="day" id="day6">
@@ -898,50 +885,30 @@
         6<small>DAY</small>
       </div>
       <div class="day-title-block">
-        <div class="day-title">青城山 → 成都 → 香港</div>
-        <div class="day-date">4月24日（周五）· 收尾 · 飞抵香港</div>
+        <div class="day-title">成都 · 自由行 · 返程</div>
+        <div class="day-date">4月24日（周五）· 收尾</div>
       </div>
     </div>
 
-    <img class="day-image" src="https://wy-static.wenxiaobai.com/aigc-online/delogo_17f1b32d-6fba-db80-7500-11ac59d4b32a.webp?ratioWH=3.0&type=opt" alt="青城山竹林古道" loading="lazy">
+    <img class="day-image" src="https://upload.wikimedia.org/wikipedia/commons/2/20/%E6%88%90%E9%83%BD%E6%AD%A6%E4%BE%AF%E7%A5%A0_%E7%BA%A2%E5%A2%99%E7%AB%B9%E5%BD%B1.jpg" alt="成都东郊记忆" loading="lazy">
 
     <div class="items">
       <div class="item">
-        <div class="item-time">上午</div>
-        <div class="item-dot-wrap"><div class="item-dot red"></div></div>
+        <div class="item-time">白天</div>
+        <div class="item-dot teal"></div>
         <div class="item-content">
-          <div class="item-label">🌲 青城山 · 道教名山</div>
-          <div class="item-desc">约3小时 · <strong>坐缆车上山</strong> · 竹林古庙</div>
+          <div class="item-label">🏯 武侯祠 · 太古里</div>
+          <div class="item-desc">喝喝茶散散步 · 逛逛街 · 市区自由行</div>
         </div>
       </div>
       <div class="item">
-        <div class="item-time">12:30</div>
-        <div class="item-dot-wrap"><div class="item-dot teal"></div></div>
+        <div class="item-time">下午</div>
+        <div class="item-dot red"></div>
         <div class="item-content">
-          <div class="item-label">🍜 山脚午餐</div>
-          <div class="item-desc">青城山特色菜</div>
+          <div class="item-label">🚗 送机 · 返程</div>
+          <div class="item-desc">7座别克商务车 · 酒店→天府机场约1小时</div>
         </div>
       </div>
-      <div class="item">
-        <div class="item-time">06:00</div>
-        <div class="item-dot-wrap"><div class="item-dot red"></div></div>
-        <div class="item-content">
-          <div class="item-label">🚗 专车 → 成都天府机场</div>
-          <div class="item-desc">约1—1.5小时 · 务必准时出发</div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="item-time">09:00</div>
-        <div class="item-dot-wrap"><div class="item-dot filled"></div></div>
-        <div class="item-content">
-          <div class="item-label">✈️ HX453 成都天府 TFU → 香港 HKG</div>
-          <div class="item-desc">9:00起飞 · 11:45抵达香港 · check in</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="alert alert-info">
-      <strong>💡 机场提示</strong> — 天府机场距市区较远，<strong>6:00前必须出门</strong>，预留充足安检时间。建议提前2小时到达机场。
     </div>
   </div>
 
@@ -954,27 +921,23 @@
       </div>
       <div class="summary-item">
         <span class="summary-icon">🎫</span>
-        <div class="summary-text"><strong>提前预约</strong><br>九寨沟门票须官方小程序预约</div>
+        <div class="summary-text"><strong>票务信息</strong><br>所有门票无需自行购买</div>
       </div>
       <div class="summary-item">
         <span class="summary-icon">🌂</span>
-        <div class="summary-text"><strong>随身必备</strong><br>轻便雨衣（四月多雨）、护膝、晕车药</div>
-      </div>
-      <div class="summary-item">
-        <span class="summary-icon">💳</span>
-        <div class="summary-text"><strong>购票建议</strong><br>高铁票用 Trip.com，支持美国信用卡</div>
+        <div class="summary-text"><strong>随身必备</strong><br>身份证件、墨镜、遮阳帽、轻便雨衣（四月多雨）、护膝、晕车药</div>
       </div>
       <div class="summary-item">
         <span class="summary-icon">👕</span>
-        <div class="summary-text"><strong>穿衣建议</strong><br>成都/都江堰 ~20°C 春装+薄外套；九寨沟 9–18°C 冲锋衣+毛衣；青城山 12–20°C T恤+外套，早晚温差大注意保暖</div>
+        <div class="summary-text"><strong>穿衣建议</strong><br>成都 ~20°C 春装+薄外套；九寨沟/理县 9–18°C 冲锋衣+毛衣；早晚温差大；带泳衣（温泉）</div>
       </div>
       <div class="summary-item">
         <span class="summary-icon">🏨</span>
-        <div class="summary-text"><strong>住宿安排</strong><br>九寨沟2晚 → 成都2晚 → 青城山1晚</div>
+        <div class="summary-text"><strong>住宿安排</strong><br>九寨沟2晚 → 理县1晚 → 都江堰1晚 → 成都1晚</div>
       </div>
       <div class="summary-item">
         <span class="summary-icon">🧭</span>
-        <div class="summary-text"><strong>行程节奏</strong><br>自然 → 恢复 → 文化 → 熊猫水利 → 山林</div>
+        <div class="summary-text"><strong>行程节奏</strong><br>九寨沟 → 羌寨温泉 → 毕棚沟 → 熊猫水利 → 成都自由行</div>
       </div>
     </div>
   </div>
@@ -982,7 +945,7 @@
 </div>
 
 <footer>
-  长沙 · 九寨沟 · 成都 · 都江堰 · 青城山 · 香港<br>
+  成都 · 九寨沟 · 理县 · 都江堰 · 成都<br>
   2026年4月19日—24日
 </footer>
 <script>
@@ -1010,9 +973,9 @@
     const el = document.getElementById(targetId);
     if (!el) return;
     const strip = document.getElementById('routeStrip');
-    const offset = strip.offsetHeight + 16;
-    const top = el.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top, behavior: 'smooth' });
+    const stripH = strip.getBoundingClientRect().height;
+    const elTop = el.getBoundingClientRect().top + window.pageYOffset;
+    window.scrollTo({ top: elTop - stripH - 120, behavior: 'smooth' });
 
     el.classList.remove('highlight');
     void el.offsetWidth;
@@ -1088,7 +1051,7 @@
 
   // Update active stop on scroll
   const days = ['day1','day2','day3','day4','day5','day6'];
-  const stopTargets = ['day1','day2','day3','day5','day6'];
+  const stopTargets = ['day1','day3','day5','day6'];
   const strip = document.getElementById('routeStrip');
 
   window.addEventListener('scroll', function() {
@@ -1118,7 +1081,7 @@
 <!-- Hero -->
 <div class="hero">
   <div class="hero-tag">ITINERARY</div>
-  <h1>Jiuzhaigou · Chengdu<br>Dujiangyan · Mt. Qingcheng</h1>
+  <h1>Jiuzhaigou · Bipenggou<br>Dujiangyan · Chengdu</h1>
   <p class="hero-sub">Apr 19 — Apr 24, 2026 · 6 Days 5 Nights</p>
   <div class="hero-dots">
     <div class="hero-dot">
@@ -1135,7 +1098,7 @@
     </div>
   </div>
   <div class="lang-toggle-wrap">
-    <div class="lang-toggle" id="langToggleEn" onclick="toggleLang()">
+    <div class="lang-toggle" onclick="toggleLang()">
       <span class="lang-opt">中文</span>
       <span class="lang-opt active">EN</span>
     </div>
@@ -1145,21 +1108,23 @@
 <!-- Route Strip -->
 <div class="route-strip" id="en-routeStrip">
   <div class="route-nav">
-    <button class="route-stop active" data-target="en-day1" data-label="4/19 Travel Day">Chengdu</button>
+    <button class="route-stop active" data-target="en-day1" data-label="D1–D2 Jiuzhaigou">Jiuzhaigou</button>
     <span class="route-arrow">→</span>
-    <button class="route-stop" data-target="en-day2" data-label="4/20 Full Day Tour">Jiuzhaigou</button>
+    <button class="route-stop" data-target="en-day3" data-label="D3 Qiang &amp; Hot Spring">Lixian</button>
     <span class="route-arrow">→</span>
-    <button class="route-stop" data-target="en-day3" data-label="4/21 Recovery Day">Chengdu</button>
+    <button class="route-stop" data-target="en-day5" data-label="D5 Pandas &amp; Dam">Dujiangyan</button>
     <span class="route-arrow">→</span>
-    <button class="route-stop" data-target="en-day5" data-label="4/23 Panda &amp; Dam">Dujiangyan</button>
-    <span class="route-arrow">→</span>
-    <button class="route-stop" data-target="en-day6" data-label="4/24 Final Day">Qingcheng</button>
+    <button class="route-stop" data-target="en-day6" data-label="D6 Free Day">Chengdu</button>
   </div>
   <div class="route-tooltip" id="en-routeTooltip"></div>
 </div>
 
 <!-- Days -->
 <div class="container">
+
+  <p class="trip-intro">
+    Classic Western Sichuan loop—straight to Jiuzhaigou for the lakes, then south through Qiang villages, hot springs, and snow peaks, down to Dujiangyan's ancient dam, a visit with the pandas, and back to Chengdu to eat and unwind. The route descends from highlands to plains—easier as we go. Nature, culture, food, all at a relaxed pace.
+  </p>
 
   <!-- Day 1 -->
   <div class="day" id="en-day1">
@@ -1168,7 +1133,7 @@
         1<small>DAY</small>
       </div>
       <div class="day-title-block">
-        <div class="day-title">Changsha → Chengdu → Jiuzhaigou</div>
+        <div class="day-title">Chengdu → Jiuzhaigou</div>
         <div class="day-date">Apr 19 (Sun) · Travel Day</div>
       </div>
     </div>
@@ -1177,61 +1142,45 @@
 
     <div class="items">
       <div class="item">
-        <div class="item-time">10:55</div>
-        <div class="item-dot-wrap"><div class="item-dot red"></div></div>
-        <div class="item-content">
-          <div class="item-label">✈️ Sichuan Airlines 3U8766</div>
-          <div class="item-desc">Changsha Huanghua Airport → Chengdu Shuangliu Airport</div>
-        </div>
-      </div>
-      <div class="item">
         <div class="item-time">13:00</div>
-        <div class="item-dot-wrap"><div class="item-dot filled"></div></div>
+        <div class="item-dot red"></div>
         <div class="item-content">
-          <div class="item-label">Land at Chengdu Shuangliu</div>
-          <div class="item-desc">Collect luggage, head to Chengdu East Station (~40 min)</div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="item-time">~15:00</div>
-        <div class="item-dot-wrap"><div class="item-dot teal"></div></div>
-        <div class="item-content">
-          <div class="item-label">📍 Chengdu East Station · Meet Up</div>
-          <div class="item-desc">Everyone meets at the station, collect/buy tickets, wait to board (arrive ~2:40 PM)</div>
+          <div class="item-label">✈️ 5 arrive at Chengdu Shuangliu Airport</div>
+          <div class="item-desc">7-seat Buick MPV pickup → head to Chengdu East Station</div>
         </div>
       </div>
       <div class="item">
         <div class="item-time">15:45</div>
-        <div class="item-dot-wrap"><div class="item-dot teal"></div></div>
+        <div class="item-dot teal"></div>
         <div class="item-content">
-          <div class="item-label">🚄 High-Speed Rail → Huanglong Jiuzhai Station</div>
-          <div class="item-desc">Departs 3:45 or 4:02 PM · ~1 hr 39 min ride</div>
+          <div class="item-label">🚄 C5796 Chengdu East → Huanglong Jiuzhai</div>
+          <div class="item-desc">5 meet at Chengdu East Station (arrive ~2:40 PM, luggage storage & ticket pickup needed) · Departs 15:45 · Arrives 17:30 · 1 hr 45 min</div>
         </div>
       </div>
       <div class="item">
-        <div class="item-time">17:25</div>
-        <div class="item-dot-wrap"><div class="item-dot"></div></div>
+        <div class="item-time">17:30</div>
+        <div class="item-dot"></div>
         <div class="item-content">
-          <div class="item-label">🚗 Private Car → Jiuzhaigou</div>
-          <div class="item-desc">~3 hours · arrive ~8:30 PM</div>
+          <div class="item-label">🚗 Station pickup → Jiuzhaigou</div>
+          <div class="item-desc">9-seat JMC van · Meet Wang Jia at the station · ~2 hr drive</div>
         </div>
       </div>
       <div class="item">
-        <div class="item-time">~20:30</div>
-        <div class="item-dot-wrap"><div class="item-dot red"></div></div>
+        <div class="item-time">Evening</div>
+        <div class="item-dot filled"></div>
         <div class="item-content">
-          <div class="item-label">🏨 Check In · Early Rest</div>
-          <div class="item-desc">Skip showers, no strenuous activity, drink plenty of water</div>
+          <div class="item-label">🏨 Vacilando Stargazing Resort</div>
+          <div class="item-desc">Golden Sunrise viewpoint · Early rest · Drink lots of water</div>
         </div>
       </div>
     </div>
 
     <div class="alert alert-warn">
-      <strong>⚠ Altitude Warning</strong> — Going directly from lowlands to 2,000m+. Rest well upon arrival. If you experience headaches or nausea, inform others immediately. Seek medical help if symptoms are severe.
+      <strong>⚠ Altitude Warning</strong> — Huanglong Jiuzhai Station sits at 2,977m, Jiuzhaigou entrance ~2,000m. Moderate altitude, not extreme. Start hydrating on the train. Rest well upon arrival. Inform others if you experience headaches or nausea.
     </div>
   </div>
 
-  <div class="section-divider"><span>DAY TWO</span></div>
+  <div class="section-divider"></div>
 
   <!-- Day 2 -->
   <div class="day" id="en-day2">
@@ -1241,45 +1190,41 @@
       </div>
       <div class="day-title-block">
         <div class="day-title">Jiuzhaigou Valley · Full Day</div>
-        <div class="day-date">Apr 20 (Mon) · UNESCO World Heritage Site</div>
+        <div class="day-date">Apr 20 (Mon) · UNESCO World Heritage Site · Elev. 2,000–3,060m · Moderate altitude</div>
       </div>
     </div>
 
-    <img class="day-image" src="https://unsplash.com/photos/zB3yb0cj7DU/download?w=800&fit=crop&h=360" alt="Jiuzhaigou colorful lakes" loading="lazy">
+    <img class="day-image" src="https://p0.ifengimg.com/a/2016_23/26a6943582a1b61_size156_w1024_h768.jpg" alt="Jiuzhaigou colorful lakes" loading="lazy">
 
     <div class="items">
       <div class="item">
         <div class="item-time">07:30</div>
-        <div class="item-dot-wrap"><div class="item-dot red"></div></div>
+        <div class="item-dot red"></div>
         <div class="item-content">
           <div class="item-label">🎫 Park Opens · Enter Early</div>
-          <div class="item-desc">No new visitors admitted after 2:00 PM — arrive early</div>
+          <div class="item-desc">No new visitors after 2:00 PM — arrive early</div>
         </div>
       </div>
       <div class="item">
         <div class="item-time">All Day</div>
-        <div class="item-dot-wrap"><div class="item-dot teal"></div></div>
+        <div class="item-dot teal"></div>
         <div class="item-content">
-          <div class="item-label">🚗 VIP Private Car Tour of the Lakes</div>
-          <div class="item-desc">Five Flower Lake → Pearl Shoal Falls → Nuorilang Falls → Five Color Pool</div>
+          <div class="item-label">🚗 VIP Private Car Tour</div>
+          <div class="item-desc">Jiuzhaigou Valley · Five Flower Lake · Nuorilang Falls · Long Lake · Guide included</div>
         </div>
       </div>
       <div class="item">
         <div class="item-time">Evening</div>
-        <div class="item-dot-wrap"><div class="item-dot filled"></div></div>
+        <div class="item-dot filled"></div>
         <div class="item-content">
-          <div class="item-label">🚗 Private Car back to Jiuzhaigou Town</div>
-          <div class="item-desc">Dinner + early rest, prepare for tomorrow's return trip</div>
+          <div class="item-label">🏨 Return to Hotel</div>
+          <div class="item-desc">Vacilando Stargazing Resort · ~10 min drive · Dinner + early rest</div>
         </div>
       </div>
     </div>
-
-    <div class="alert alert-gold">
-      <strong>💡 Book Ahead</strong> — Jiuzhaigou enforces strict visitor limits. Tickets must be reserved via the official mini-program. Peak season sells out fast — <strong>book now</strong>!
-    </div>
   </div>
 
-  <div class="section-divider"><span>DAY THREE</span></div>
+  <div class="section-divider"></div>
 
   <!-- Day 3 -->
   <div class="day" id="en-day3">
@@ -1288,50 +1233,54 @@
         3<small>DAY</small>
       </div>
       <div class="day-title-block">
-        <div class="day-title">Jiuzhaigou → Chengdu · Recovery</div>
-        <div class="day-date">Apr 21 (Tue) · Descend & Recharge</div>
+        <div class="day-title">Jiuzhaigou → Maoxian → Lixian</div>
+        <div class="day-date">Apr 21 (Tue) · Scenic Route</div>
       </div>
     </div>
 
-    <img class="day-image" src="https://5b0988e595225.cdn.sohucs.com/images/20190925/fa4d6cb0fe4a48aca925689cc75e84d0.jpeg" alt="Chengdu street food" loading="lazy">
+    <img class="day-image" src="https://p9.itc.cn/images01/20210319/01c735f4cbf2469e8efb44b7534c7c71.png" alt="Qiang Village" loading="lazy">
 
     <div class="items">
       <div class="item">
         <div class="item-time">AM</div>
-        <div class="item-dot-wrap"><div class="item-dot red"></div></div>
+        <div class="item-dot red"></div>
         <div class="item-content">
-          <div class="item-label">🚗 Private Car → Huanglong Jiuzhai Station</div>
-          <div class="item-desc">~3 hours, leave early</div>
+          <div class="item-label">🚗 Depart · Jiuzhaigou → Maoxian</div>
+          <div class="item-desc">9-seat JMC van · Scenic drive</div>
         </div>
       </div>
       <div class="item">
-        <div class="item-time">Noon</div>
-        <div class="item-dot-wrap"><div class="item-dot teal"></div></div>
+        <div class="item-time">En Route</div>
+        <div class="item-dot teal"></div>
         <div class="item-content">
-          <div class="item-label">🚄 High-Speed Rail back to Chengdu East</div>
-          <div class="item-desc">~1 hr 39 min, scenic ride through mountains</div>
+          <div class="item-label">🏞️ Diexi Lake</div>
+          <div class="item-desc">Highland barrier lake · Elev. ~2,600m · ~2 hr from Jiuzhaigou</div>
         </div>
       </div>
       <div class="item">
         <div class="item-time">PM</div>
-        <div class="item-dot-wrap"><div class="item-dot"></div></div>
+        <div class="item-dot teal"></div>
         <div class="item-content">
-          <div class="item-label">🏨 Check In Chengdu Hotel</div>
-          <div class="item-desc">Tea at a teahouse · Relax</div>
+          <div class="item-label">🏘️ Taoping Qiang Village</div>
+          <div class="item-desc">Ancient Qiang settlement · Watchtower architecture · ~1.5 hr from Diexi</div>
         </div>
       </div>
       <div class="item">
-        <div class="item-time">Dinner</div>
-        <div class="item-dot-wrap"><div class="item-dot filled"></div></div>
+        <div class="item-time">Evening</div>
+        <div class="item-dot filled"></div>
         <div class="item-content">
-          <div class="item-label">🍜 Street Food in a Local Neighborhood</div>
-          <div class="item-desc">Bo-bo chicken, dandan noodles, maocai — first taste of Chengdu snacks</div>
+          <div class="item-label">🏨 Zhuodi Kangqin Hot Spring</div>
+          <div class="item-desc">Lixian Gu'ergou · Elev. ~2,400m · ~1 hr from Taoping</div>
         </div>
       </div>
     </div>
+
+    <div class="alert alert-info">
+      <strong>♨️ Hot Spring Tip</strong> — Gu'ergou sits at ~2,400m, moderate altitude. Bring your swimsuit! At altitude: soak no more than 20 min, avoid soaking on empty/full stomach, stay hydrated, stand up slowly to prevent dizziness.
+    </div>
   </div>
 
-  <div class="section-divider"><span>DAY FOUR</span></div>
+  <div class="section-divider"></div>
 
   <!-- Day 4 -->
   <div class="day" id="en-day4">
@@ -1340,50 +1289,54 @@
         4<small>DAY</small>
       </div>
       <div class="day-title-block">
-        <div class="day-title">Chengdu · Culture & Leisure</div>
-        <div class="day-date">Apr 22 (Wed) · Rest + History + Food</div>
+        <div class="day-title">Lixian → Dujiangyan</div>
+        <div class="day-date">Apr 22 (Wed) · Bipenggou Valley · Elev. 2,000–3,600m · ⚠ Trip's highest point</div>
       </div>
     </div>
 
-    <img class="day-image" src="https://upload.wikimedia.org/wikipedia/commons/2/20/%E6%88%90%E9%83%BD%E6%AD%A6%E4%BE%AF%E7%A5%A0_%E7%BA%A2%E5%A2%99%E7%AB%B9%E5%BD%B1.jpg" alt="Wuhou Temple red walls and bamboo" loading="lazy">
+    <img class="day-image" src="https://img.redocn.com/sheying/20251121/bipenggoubingchuanxiagaoyuanhaizi_13715879.jpg.400.jpg" alt="Bipenggou" loading="lazy">
 
     <div class="items">
       <div class="item">
         <div class="item-time">AM</div>
-        <div class="item-dot-wrap"><div class="item-dot red"></div></div>
+        <div class="item-dot red"></div>
         <div class="item-content">
-          <div class="item-label">🏯 Wuhou Temple or 🌿 Du Fu Thatched Cottage</div>
-          <div class="item-desc">Pick one · Walkable · Rich in history and culture</div>
+          <div class="item-label">🏔️ Bipenggou Scenic Area</div>
+          <div class="item-desc">Shanghaizi → Panyang Lake (shuttle) → Moon Bay → Yanzi Rock · ~30 min from hotel</div>
         </div>
       </div>
       <div class="item">
         <div class="item-time">PM</div>
-        <div class="item-dot-wrap"><div class="item-dot teal"></div></div>
+        <div class="item-dot teal"></div>
         <div class="item-content">
-          <div class="item-label">🍵 Teahouse · Slow Life</div>
-          <div class="item-desc">Experience Chengdu's laid-back culture</div>
+          <div class="item-label">🚗 Drive to Dujiangyan</div>
+          <div class="item-desc">Lixian → Dujiangyan · ~3 hr drive</div>
         </div>
       </div>
       <div class="item">
-        <div class="item-time">PM</div>
-        <div class="item-dot-wrap"><div class="item-dot"></div></div>
+        <div class="item-time">Dusk</div>
+        <div class="item-dot"></div>
         <div class="item-content">
-          <div class="item-label">🛍️ Chunxi Road / IFS</div>
-          <div class="item-desc">Shopping · Chengdu specialties · Souvenirs</div>
+          <div class="item-label">🌉 Dujiangyan Nanqiao Bridge at Night</div>
+          <div class="item-desc">Lantern-lit covered bridge · Ancient night charm</div>
         </div>
       </div>
       <div class="item">
-        <div class="item-time">Dinner</div>
-        <div class="item-dot-wrap"><div class="item-dot filled"></div></div>
+        <div class="item-time">Evening</div>
+        <div class="item-dot filled"></div>
         <div class="item-content">
-          <div class="item-label">🍢 Chengdu Hotpot</div>
-          <div class="item-desc">Half-and-half pot (spicy + mild) — accommodating everyone's spice tolerance</div>
+          <div class="item-label">🏨 Wangshanwang Sky Courtyard B&B</div>
+          <div class="item-desc">Dujiangyan Nanqiao Bridge branch</div>
         </div>
       </div>
     </div>
+
+    <div class="alert alert-warn">
+      <strong>⚠ Altitude Tip</strong> — Bipenggou's core area sits at ~3,600m — the highest point of the trip. Avoid strenuous activity and take it slow. Mountain roads have many switchbacks; motion sickness pills recommended, avoid looking at phones in the car.
+    </div>
   </div>
 
-  <div class="section-divider"><span>DAY FIVE</span></div>
+  <div class="section-divider"></div>
 
   <!-- Day 5 -->
   <div class="day" id="en-day5">
@@ -1392,8 +1345,8 @@
         5<small>DAY</small>
       </div>
       <div class="day-title-block">
-        <div class="day-title">Panda Valley · Dujiangyan · Qingcheng</div>
-        <div class="day-date">Apr 23 (Thu) · ⚠ Packed Schedule</div>
+        <div class="day-title">Dujiangyan → Chengdu</div>
+        <div class="day-date">Apr 23 (Thu) · Pandas & Dam</div>
       </div>
     </div>
 
@@ -1401,53 +1354,41 @@
 
     <div class="items">
       <div class="item">
-        <div class="item-time">Early</div>
-        <div class="item-dot-wrap"><div class="item-dot filled"></div></div>
-        <div class="item-content">
-          <div class="item-label">🚗 Private Car · Chengdu → Dujiangyan</div>
-          <div class="item-desc">2-day car hire (D5–D6) · Hotel pickup · ~1 hour</div>
-        </div>
-      </div>
-      <div class="item">
         <div class="item-time">AM</div>
-        <div class="item-dot-wrap"><div class="item-dot red"></div></div>
+        <div class="item-dot red"></div>
         <div class="item-content">
-          <div class="item-label">🐼 Dujiangyan Panda Valley</div>
-          <div class="item-desc">~2 hours · Electric cart available</div>
+          <div class="item-label">🐼 Panda Valley</div>
+          <div class="item-desc">~2 hours · ~20 min from B&B</div>
         </div>
       </div>
       <div class="item">
         <div class="item-time">PM</div>
-        <div class="item-dot-wrap"><div class="item-dot teal"></div></div>
+        <div class="item-dot teal"></div>
         <div class="item-content">
-          <div class="item-label">🌊 Dujiangyan Irrigation System</div>
-          <div class="item-desc">2,000 years old · UNESCO World Heritage · Flat walkways</div>
+          <div class="item-label">🌊 Dujiangyan Scenic Area</div>
+          <div class="item-desc">2,000 years old · UNESCO World Heritage · Bilingual guide (CN/EN) · ~15 min from Panda Valley</div>
         </div>
       </div>
       <div class="item">
         <div class="item-time">Dusk</div>
-        <div class="item-dot-wrap"><div class="item-dot"></div></div>
+        <div class="item-dot"></div>
         <div class="item-content">
-          <div class="item-label">🌉 Nanqiao Bridge at Night</div>
-          <div class="item-desc">5-min walk · Beautifully lit</div>
+          <div class="item-label">🚗 Drive to Chengdu</div>
+          <div class="item-desc">Dujiangyan → train station for luggage → Chengdu city · ~1.5 hr</div>
         </div>
       </div>
       <div class="item">
         <div class="item-time">Evening</div>
-        <div class="item-dot-wrap"><div class="item-dot filled"></div></div>
+        <div class="item-dot filled"></div>
         <div class="item-content">
-          <div class="item-label">🚗 Drive → Mt. Qingcheng (~20 min)</div>
-          <div class="item-desc">🏨 Stay: Guesthouse at the foot of Qingcheng, peaceful setting</div>
+          <div class="item-label">🏨 Four Points by Sheraton Chunxi Road</div>
+          <div class="item-desc">City center</div>
         </div>
       </div>
     </div>
-
-    <div class="alert alert-warn">
-      <strong>⚠ Energy Check</strong> — If Mom is tired, choose <strong>either</strong> Panda Valley or Dujiangyan — don't push it. Mt. Qingcheng is tomorrow's highlight, so saving energy today matters more.
-    </div>
   </div>
 
-  <div class="section-divider"><span>DAY SIX</span></div>
+  <div class="section-divider"></div>
 
   <!-- Day 6 -->
   <div class="day" id="en-day6">
@@ -1456,50 +1397,30 @@
         6<small>DAY</small>
       </div>
       <div class="day-title-block">
-        <div class="day-title">Mt. Qingcheng → Chengdu → Hong Kong</div>
-        <div class="day-date">Apr 24 (Fri) · Final Day · Fly to HK</div>
+        <div class="day-title">Chengdu · Free Day · Departure</div>
+        <div class="day-date">Apr 24 (Fri) · Final Day</div>
       </div>
     </div>
 
-    <img class="day-image" src="https://wy-static.wenxiaobai.com/aigc-online/delogo_17f1b32d-6fba-db80-7500-11ac59d4b32a.webp?ratioWH=3.0&type=opt" alt="Mt. Qingcheng bamboo forest trail" loading="lazy">
+    <img class="day-image" src="https://upload.wikimedia.org/wikipedia/commons/2/20/%E6%88%90%E9%83%BD%E6%AD%A6%E4%BE%AF%E7%A5%A0_%E7%BA%A2%E5%A2%99%E7%AB%B9%E5%BD%B1.jpg" alt="Eastern Suburb Memory" loading="lazy">
 
     <div class="items">
       <div class="item">
-        <div class="item-time">AM</div>
-        <div class="item-dot-wrap"><div class="item-dot red"></div></div>
+        <div class="item-time">Daytime</div>
+        <div class="item-dot teal"></div>
         <div class="item-content">
-          <div class="item-label">🌲 Mt. Qingcheng · Sacred Taoist Mountain</div>
-          <div class="item-desc">~3 hours · <strong>Take the cable car up</strong> · Bamboo groves & temples</div>
+          <div class="item-label">🏯 Wuhou Temple · Taikoo Li</div>
+          <div class="item-desc">Tea · Strolling · Shopping · Free time in the city</div>
         </div>
       </div>
       <div class="item">
-        <div class="item-time">12:30</div>
-        <div class="item-dot-wrap"><div class="item-dot teal"></div></div>
+        <div class="item-time">PM</div>
+        <div class="item-dot red"></div>
         <div class="item-content">
-          <div class="item-label">🍜 Lunch at the Mountain Base</div>
-          <div class="item-desc">Qingcheng specialties</div>
+          <div class="item-label">🚗 Airport Transfer · Departure</div>
+          <div class="item-desc">7-seat Buick MPV · Hotel → Tianfu Airport ~1 hr</div>
         </div>
       </div>
-      <div class="item">
-        <div class="item-time">06:00</div>
-        <div class="item-dot-wrap"><div class="item-dot red"></div></div>
-        <div class="item-content">
-          <div class="item-label">🚗 Private Car → Chengdu Tianfu Airport</div>
-          <div class="item-desc">~1–1.5 hours · Must leave on time</div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="item-time">09:00</div>
-        <div class="item-dot-wrap"><div class="item-dot filled"></div></div>
-        <div class="item-content">
-          <div class="item-label">✈️ HX453 Chengdu Tianfu TFU → Hong Kong HKG</div>
-          <div class="item-desc">Departs 9:00 AM · Arrives 11:45 AM · Check in</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="alert alert-info">
-      <strong>💡 Airport Tip</strong> — Tianfu Airport is far from the city. <strong>Leave by 6:00 AM at the latest</strong>, and allow plenty of time for security. Arrive 2 hours early.
     </div>
   </div>
 
@@ -1508,31 +1429,27 @@
     <div class="summary-grid">
       <div class="summary-item">
         <span class="summary-icon">💊</span>
-        <div class="summary-text"><strong>Altitude Prep</strong><br>Bring altitude sickness pills. Drink lots of water and rest well on arrival night</div>
+        <div class="summary-text"><strong>Altitude Prep</strong><br>Bring altitude pills. Drink lots of water and rest well on arrival night</div>
       </div>
       <div class="summary-item">
         <span class="summary-icon">🎫</span>
-        <div class="summary-text"><strong>Book Ahead</strong><br>Jiuzhaigou tickets must be reserved via the official mini-program</div>
+        <div class="summary-text"><strong>Tickets</strong><br>All attraction tickets are arranged — no need to purchase on your own</div>
       </div>
       <div class="summary-item">
         <span class="summary-icon">🌂</span>
-        <div class="summary-text"><strong>Pack Essentials</strong><br>Light rain jacket (April is rainy), knee braces, motion sickness pills</div>
-      </div>
-      <div class="summary-item">
-        <span class="summary-icon">💳</span>
-        <div class="summary-text"><strong>Ticket Buying</strong><br>Book train tickets on Trip.com — accepts US credit cards</div>
+        <div class="summary-text"><strong>Pack Essentials</strong><br>ID/passport, sunglasses, sun hat, light rain jacket (April is rainy), knee braces, motion sickness pills</div>
       </div>
       <div class="summary-item">
         <span class="summary-icon">👕</span>
-        <div class="summary-text"><strong>What to Wear</strong><br>Chengdu/Dujiangyan ~20°C: spring layers + light jacket; Jiuzhaigou 9–18°C: windbreaker + sweater; Qingcheng 12–20°C: tee + jacket. Big temp swings morning & night</div>
+        <div class="summary-text"><strong>What to Wear</strong><br>Chengdu ~20°C: spring layers + light jacket; Jiuzhaigou/Lixian 9–18°C: windbreaker + sweater; Big temp swings; Bring swimsuit (hot spring)</div>
       </div>
       <div class="summary-item">
         <span class="summary-icon">🏨</span>
-        <div class="summary-text"><strong>Accommodation</strong><br>Jiuzhaigou 2 nights → Chengdu 2 nights → Qingcheng 1 night</div>
+        <div class="summary-text"><strong>Accommodation</strong><br>Jiuzhaigou 2 nights → Lixian 1 night → Dujiangyan 1 night → Chengdu 1 night</div>
       </div>
       <div class="summary-item">
         <span class="summary-icon">🧭</span>
-        <div class="summary-text"><strong>Trip Rhythm</strong><br>Nature → Recovery → Culture → Pandas & Dam → Mountain</div>
+        <div class="summary-text"><strong>Trip Rhythm</strong><br>Jiuzhaigou → Qiang Village & Hot Spring → Bipenggou → Pandas & Dam → Chengdu Free Day</div>
       </div>
     </div>
   </div>
@@ -1540,7 +1457,7 @@
 </div>
 
 <footer>
-  Changsha · Jiuzhaigou · Chengdu · Dujiangyan · Mt. Qingcheng · Hong Kong<br>
+  Chengdu · Jiuzhaigou · Lixian · Dujiangyan · Chengdu<br>
   April 19 – 24, 2026
 </footer>
 <script>
@@ -1567,9 +1484,9 @@
   function scrollToDay(targetId, btn) {
     var el = document.getElementById(targetId);
     if (!el) return;
-    var offset = strip.offsetHeight + 16;
-    var top = el.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top: top, behavior: 'smooth' });
+    var stripH = strip.getBoundingClientRect().height;
+    var elTop = el.getBoundingClientRect().top + window.pageYOffset;
+    window.scrollTo({ top: elTop - stripH - 120, behavior: 'smooth' });
 
     el.classList.remove('highlight');
     void el.offsetWidth;
@@ -1613,7 +1530,7 @@
   }
 
   var days = ['en-day1','en-day2','en-day3','en-day4','en-day5','en-day6'];
-  var stopTargets = ['en-day1','en-day2','en-day3','en-day5','en-day6'];
+  var stopTargets = ['en-day1','en-day3','en-day5','en-day6'];
 
   window.addEventListener('scroll', function() {
     var stripH = strip.offsetHeight;
@@ -1640,15 +1557,18 @@
 function toggleLang() {
   var zh = document.getElementById('langZh');
   var en = document.getElementById('langEn');
+  var btn = document.getElementById('langToggle');
 
   if (en.hidden) {
     zh.hidden = true;
     en.hidden = false;
+    btn.textContent = '中文';
     document.documentElement.lang = 'en';
     document.title = 'Sichuan Itinerary · 4/19–4/24';
   } else {
     zh.hidden = false;
     en.hidden = true;
+    btn.textContent = 'EN';
     document.documentElement.lang = 'zh';
     document.title = '川渝行程 · 4/19–4/24';
   }
